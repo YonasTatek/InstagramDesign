@@ -27,37 +27,42 @@ data class Profile(@DrawableRes val image: Int, val name: String)
 
 @Composable
 fun ProfileList(modifier: Modifier = Modifier) {
-    LazyRow (
+    LazyRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(32.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        item {  arrayOf(
-            Profile(R.drawable.mask_group1, "Gadget"),
-            Profile(R.drawable.mask_group, "Design pills"),
-            Profile(R.drawable.img_0989, "Challenge"),
-            Profile(R.drawable.img_09891, "Illustrazio")
-        ).map {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        verticalAlignment = Alignment.CenterVertically,
 
 
-                Image(
-                    painter = painterResource(id = it.image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(61.7.dp)
-                        .clip(CircleShape)
-                        .border(
-                            width = 0.8.dp,
-                            shape = CircleShape,
-                            color = Color.White
-                        )
+        ) {
+        item {
+            arrayOf(
+                Profile(R.drawable.mask_group1, name = "Gadget"),
+                Profile(R.drawable.mask_group, name = "Design pills"),
+                Profile(R.drawable.img_0989, name = "Challenge"),
+                Profile(R.drawable.img_09891, name = "Illustrazioni")
+            ).map {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(end = 33.dp)
+                ) {
 
-                )
-                Spacer(modifier = Modifier.height(5.7.dp))
-                Text(text = it.name, style = MaterialTheme.typography.titleSmall)
+
+                    Image(
+                        painter = painterResource(id = it.image),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(61.7.dp)
+                            .clip(CircleShape)
+                            .border(
+                                width = 0.8.dp,
+                                shape = CircleShape,
+                                color = Color.White
+                            )
+
+                    )
+                    Spacer(modifier = Modifier.height(5.7.dp))
+                    Text(text = it.name, style = MaterialTheme.typography.titleSmall)
+                }
             }
-        }
         }
 
     }
